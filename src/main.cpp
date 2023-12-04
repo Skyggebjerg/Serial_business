@@ -1,19 +1,13 @@
 #include <Arduino.h>
 #include <M5Core2.h>
 
-
-//int inByte; // Stores incoming command 
-
 void setup()
   {
   M5.begin();
-  M5.Lcd.setSwapBytes(true);
   M5.Lcd.fillScreen(BLACK);
-
-
+  M5.Lcd.setTextSize(4); 
   Serial.begin(115200);
-  //pinMode(13, OUTPUT); // Led pin
-  Serial.println("Type 1: LED ON, 0: LED OFF "); // Ready to receive commands
+  Serial.println("Ready to rock "); // Ready to receive commands
 }
 
 void loop() {
@@ -21,7 +15,9 @@ void loop() {
   while (Serial.available() == 0) {}     //wait for data available
   String teststr = Serial.readString();  //read until timeout
   //teststr.trim();                        // remove any \r \n whitespace at the end of the String
-    M5.Lcd.drawString(teststr,10,40,2);
+    M5.Lcd.fillScreen(BLACK);
+    M5.Lcd.setCursor(0, 30);
+    M5.Lcd.print(teststr);
     Serial.println(teststr);
     delay(2000);
 
